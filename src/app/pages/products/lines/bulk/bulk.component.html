@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Cargar Formato (.xlsx)</h4>
+                <h6 class="card-subtitle">Seleccione el archivo que contiene los registros.</h6>
+                <br>
+                <p><a class="btn btn-sm btn-danger" [href]="fileUrl" target="_blank">Descargar Formato</a></p>
+                <input type="file" #fileNews (change)="loadExcel($event)">
+            </div>
+        </div>
+    </div>
+</div>

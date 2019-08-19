@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <div class="form-group">
+                            <p><a routerLink="/specialties/create" class="btn btn-danger btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> Nuevo Registro</a> | <a routerLink="/specialties/bulk" class="btn btn-success btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> Cargue Masivo</a></p>
+                            <table id="myTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="specialtiesList">
+                                    <tr *ngFor="let specialty of specialtiesList;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{specialty.name | uppercase}}</td>
+                                        <td class="text-nowrap">
+                                            <a style="cursor: pointer" (click)="goToViewSpecialty(specialty)" data-toggle="tooltip" data-original-title="Ver"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="goToUpdateSpeciality(specialty)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="deleteSpeciality(specialty)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>

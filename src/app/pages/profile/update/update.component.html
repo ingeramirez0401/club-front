@@ -1,0 +1,99 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Información del Usuario</h4>
+                <h6 class="card-subtitle">Editar Información</h6>
+                <form *ngIf="forma" [formGroup]="forma" class="form p-t-20" (ngSubmit)="saveChanges()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Nombre(s)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" name="FirstName" formControlName="FirstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Apellidos(s)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" name="LastName" formControlName="LastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Municipio</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-location-arrow"></i></div>
+                            <select *ngIf="cityList" name="CityId" formControlName="CityId" class="form-control">
+                            <option *ngFor="let city of cityList" [ngValue]="city.id">
+                              {{ city.name }}
+                            </option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Dirección</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-location-pin"></i></div>
+                            <input type="text" class="form-control" name="Address" formControlName="Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Telefono</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-mobile"></i></div>
+                            <input type="text" class="form-control" name="Phone" formControlName="Phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Genero</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                            <select *ngIf="genreList" name="GenreId" formControlName="GenreId" class="form-control">
+                          <option *ngFor="let genre of genreList" [ngValue]="genre.Id">
+                            {{ genre.Name }}
+                          </option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Rol</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                            <input type="text" class="form-control" name="RoleUser" formControlName="RoleUser" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input type="email" class="form-control" name="UserName" formControlName="UserName" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd1">Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input type="password" class="form-control" name="Password" formControlName="Password">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar Cambios</button>
+                    <button type="button" (click)="goToProfile()" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body" align="center">
+                <h4 class="card-title">Imagen de Perfíl</h4>
+                <h6 class="card-subtitle">Cambiar imagen de Usuario</h6>
+
+                <img [src]="userProfile.imageUrl | defaultPhoto" id="picturePreview" class="w150 img img-thumbnail">
+                <br>
+                <input type="file" #fileInput (change)="loadPhoto($event)">
+                <br><br>
+                <button type="button" (click)="uploadFile()" [disabled]="!imageLoaded" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-upload"></i> Subir Foto</button>
+            </div>
+        </div>
+    </div>
+</div>

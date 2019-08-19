@@ -1,0 +1,162 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Editar Usuario</h4>
+                <form *ngIf="forma" [formGroup]="forma" class="form p-t-20" (ngSubmit)="saveChanges()">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Nombre(s)</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <input type="text" class="form-control" name="FirstName" formControlName="FirstName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Apellidos(s)</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <input type="text" class="form-control" name="LastName" formControlName="LastName" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Tipo de Documento</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <select *ngIf="documentsList" name="DocumentTypeId" formControlName="DocumentTypeId" class="form-control" required>
+                                            <option *ngFor="let document of documentsList" [ngValue]="document.id">
+                                              {{ document.name }}
+                                            </option>
+                                          </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Documento</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <input type="text" class="form-control" name="Document" formControlName="Document" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Municipio</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <select *ngIf="cityList" name="CityId" formControlName="CityId" class="form-control" required>
+                                                <option *ngFor="let city of cityList" [ngValue]="city.Id">
+                                                  {{ city.Name }}
+                                                </option>
+                                              </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Dirección</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <input type="text" class="form-control" name="Address" formControlName="Address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Fecha de Nacimiento</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                                    <input type="date" class="form-control" name="DateOfBirth" formControlName="DateOfBirth">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Genero</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <select *ngIf="genreList" name="GenreId" formControlName="GenreId" class="form-control" required>
+                                                        <option *ngFor="let genre of genreList" [ngValue]="genre.Id">
+                                                            {{ genre.Name }}
+                                                        </option>
+                                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Telefono</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <input type="text" class="form-control" name="Phone" formControlName="Phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Salario ($)</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <input type="number" class="form-control" name="Salario" formControlName="Salario">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Rol</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <select *ngIf="rolesList" name="" formControlName="PersonTypeId" class="form-control" required>
+                                        <option *ngFor="let role of rolesList" [ngValue]="role.id">
+                                            {{ role.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Correo Electrónico</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <input type="email" class="form-control" name="Email" formControlName="Email" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="pwd1">Contraseña</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-angle-right"></i></div>
+                                    <input type="password" class="form-control" name="Password" formControlName="Password" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar Cambios</button>
+                    <button type="button" (click)="goToList()" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

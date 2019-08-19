@@ -1,0 +1,207 @@
+<div class="row animated fadeIn">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title">Crear Nuevo Proveedor</h4>
+              <form *ngIf="forma" [formGroup]="forma" class="form p-t-20" (ngSubmit)="saveChanges()">
+                <h5 style="color: #c20e1a">INFORMACIÓN DEL CLIENTE</h5>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Nombre</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="text" class="form-control" name="Name" formControlName="Name">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Tipo de Documento</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="DocumentTypeId" formControlName="DocumentTypeId" class="form-control" required>
+                          <option *ngFor="let document of documentsList; let i=index" [value]="document.id">{{document.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Documento</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Document" formControlName="Document">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Régimen</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Regime" formControlName="Regime">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Tipo de Compañía</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="CompanyType" formControlName="CompanyType" class="form-control">
+                          <option value="Natural">Natural</option>
+                          <option value="Juridico">Jurídico</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Tipo de Proveedor</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="SupplierTypeId" formControlName="SupplierTypeId" class="form-control">
+                          <option *ngFor="let supType of supplierList; let i=index" [value]="supType.supplierTypeId">{{supType.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">País</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="CountryId" formControlName="CountryId" class="form-control" (change)="getDepartments()">
+                          <option *ngFor="let country of countryList; let i=index" [value]="country.id">{{country.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Departamento</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="DepartmentId" formControlName="DepartmentId" class="form-control" (change)="getCities()">
+                          <option *ngFor="let department of departmentList; let i=index" [value]="department.id">{{department.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Ciudad</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <select name="CityId" formControlName="CityId" class="form-control">
+                          <option *ngFor="let city of citiesList; let i=index" [value]="city.id">{{city.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Dirección</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Address" formControlName="Address">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Telefono 1</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Phone1" formControlName="Phone1">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Telefono 2</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Phone2" formControlName="Phone2">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Fax</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="Fax" formControlName="Fax">
+                    </div>
+                  </div>
+                  <h5 style="color: #c20e1a">ACTIVIDAD ECONÓMICA</h5>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Tipo de Actividad</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="TypeOfActivity" formControlName="TypeOfActivity">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputuname">Código CIIU</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                        <input type="text" class="form-control" name="CiiuCode" formControlName="CiiuCode">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Actividad económica de la empresa</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <textarea name="EconActDescription" formControlName="EconActDescription" class="form-control" rows="10"></textarea>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Representante Legal</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="text" class="form-control" name="LegalPersonName" formControlName="LegalPersonName">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Fecha de Nacimiento</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="date" class="form-control" name="LegalPersonFec" formControlName="LegalPersonFec">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Tipo de Documento</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <select name="LegalPersonDocTypeId" formControlName="LegalPersonDocTypeId" class="form-control" required>
+                            <option *ngFor="let document of documentsList; let i=index" [value]="document.id">{{document.name}}</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Documento</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="text" class="form-control" name="LegalPersonDocument" formControlName="LegalPersonDocument">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputuname">Telefono</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="text" class="form-control" name="LegalPersonPhone" formControlName="LegalPersonPhone">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputuname">Celular</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                          <input type="text" class="form-control" name="LegalPersonCellPhone" formControlName="LegalPersonCellPhone">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                            <input type="text" class="form-control" name="LegalPersonEmail" formControlName="LegalPersonEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Tipo de Moneda</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                            <select name="MoneyTypeId" formControlName="MoneyTypeId" class="form-control">
+                              <option *ngFor="let money of moneyList; let i=index" [value]="money.moneyTypeId">{{money.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Observaciones</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-arrow-right"></i></div>
+                            <input type="text" class="form-control" name="Observations" formControlName="Observations">
+                        </div>
+                    </div>
+                  <button type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar Cambios</button>
+                  <button type="button" (click)="goToList()" class="btn btn-inverse waves-effect waves-light">Volver</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

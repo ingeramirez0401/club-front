@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive m-t-40">
+                        <div class="form-group">
+                            <p><a routerLink="/reject-reasons/create" class="btn btn-danger btn-sm"><i class="icon wb-plus" aria-hidden="true"></i> Nuevo Registro</a></p>
+                            <table id="myTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th class="text-nowrap">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="reasonsList">
+                                    <tr *ngFor="let reason of reasonsList;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{reason.name | uppercase}}</td>
+                                        <td class="text-nowrap">
+                                            <a style="cursor: pointer" (click)="goToUpdateReason(reason)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                            <a style="cursor: pointer" (click)="deleteReason(reason)" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
